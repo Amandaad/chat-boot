@@ -27,3 +27,21 @@ management:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+integrations:
+  manychat:
+    webhook-secret: ${MANYCHAT_WEBHOOK_SECRET:}
+  openai:
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4.1-mini}
+    system-prompt: ${OPENAI_SYSTEM_PROMPT:Voce e a assistente virtual do Studio AS. Responda em portugues brasileiro, com cordialidade e brevidade. Nao invente precos, servicos, horarios ou disponibilidade. Se nao souber, diga que a equipe confirmara.}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:h2:mem:studio_as;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
